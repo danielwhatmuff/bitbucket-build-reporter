@@ -10,7 +10,6 @@ from git import Repo
 bb_api_host='https://api.bitbucket.org'
 
 jenkins_url=os.environ.get('BUILD_URL')
-jenkins_job=os.environ.get('JOB_NAME')
 jenkins_number=os.environ.get('BUILD_NUMBER')
 
 
@@ -49,7 +48,7 @@ def main():
                       "state": bb_state,
                       "key": 'JENKINS-{}'.format(jenkins_number),
                       "url": jenkins_url,
-                      "description": jenkins_job
+                      "description": '{}/{}'.format(bb_org, bb_repo)
                     }
                     
     sha = get_git_sha()
@@ -64,7 +63,7 @@ def main():
         print('bb_repo is {}'.format(str(bb_repo)))
         print('bb_org is {}'.format(str(bb_org)))
         print('bb_state is {}'.format(str(bb_state)))
-        print('Jenkins env vars BUILD_URL={} JOB_NAME={} BUILD_NUMBER={}'.format(str(jenkins_url), str(jenkins_job), str(jenkins_number)))
+        print('Jenkins env vars BUILD_URL={} BUILD_NUMBER={}'.format(str(jenkins_url), str(jenkins_number)))
         
     try:
         response = requests.post(bb_status_path, auth=(bb_username, bb_password), json=status_object)
@@ -75,6 +74,7 @@ def main():
             print(response, response.content)
     except Exception as e:
         print('Couldnt post status back to Bitbucket - {}'.format(e))
+        sys.ex
 
 
 if __name__ == "__main__":
