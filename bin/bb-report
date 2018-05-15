@@ -33,7 +33,7 @@ def get_git_sha():
         sha = sha[:7]
     except Exception as e:
         print('Couldnt detect git commit - {}'.format(e))
-        sys.exit(1)
+        sys.exit(0)
     return sha
 
 
@@ -51,6 +51,7 @@ def main():
                       "url": jenkins_url,
                       "description": jenkins_job
                     }
+                    
     sha = get_git_sha()
     
     bb_status_path='{}/2.0/repositories/{}/{}/commit/{}/statuses/build'.format(bb_api_host, bb_org, bb_repo, sha)
