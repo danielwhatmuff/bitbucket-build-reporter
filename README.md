@@ -32,3 +32,9 @@ optional arguments:
                         Password for bitbucket
   -d, --debug           Debug mode
 ```
+
+### Sanity test it locally
+```
+$ cd your-repo/ # Required for determining a valid commit sha
+$ BUILD_URL='https://your-jenkins.com/' BUILD_NUMBER='123' -s INPROGRESS -r <yourrepo> -u <bitbucket username> -p <bitbucket password> -o <bitbucket org>
+```
