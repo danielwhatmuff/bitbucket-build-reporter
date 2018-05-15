@@ -21,7 +21,7 @@ def parse_arguments():
     PARSER.add_argument('-s', '--state', help="State of the build", required=True, choices=['INPROGRESS', 'SUCCESSFUL', 'FAILED'])
     PARSER.add_argument('-u', '--username', help="Username for bitbucket", required=True)
     PARSER.add_argument('-p', '--password', help="Password for bitbucket", required=True)
-    PARSER.add_argument('-d', '--debug', help="Debug mode", default=False, required=False)
+    PARSER.add_argument('-d', '--debug', help="Debug mode", action='store_true', required=False)
     return PARSER.parse_args()
 
 
