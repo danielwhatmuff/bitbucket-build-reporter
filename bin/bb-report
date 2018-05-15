@@ -74,7 +74,7 @@ def main():
             print(response, response.content)
     except Exception as e:
         print('Couldnt post status back to Bitbucket - {}'.format(e))
-        sys.ex
+        sys.exit(0)
 
 
 if __name__ == "__main__":
