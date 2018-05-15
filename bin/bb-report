@@ -59,7 +59,7 @@ def main():
     if debug:
         print('Debug mode is on')
         print('sha is {}'.format(str(sha)))
-        print('status path is {}'.format(str(bb_status_path))
+        print('status path is {}'.format(str(bb_status_path)))
         print('status object is {}'.format(str(status_object)))
         print('bb_repo is {}'.format(str(bb_repo)))
         print('bb_org is {}'.format(str(bb_org)))
@@ -72,6 +72,7 @@ def main():
             print('Build status successfully updated for {} of {}'.format(sha, bb_repo))
         else:
             print('Couldnt update build status!')
+            print(response, response.content)
     except Exception as e:
         print('Couldnt post status back to Bitbucket - {}'.format(e))
 
