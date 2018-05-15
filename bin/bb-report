@@ -21,6 +21,7 @@ def parse_arguments():
     PARSER.add_argument('-s', '--state', help="State of the build", required=True, choices=['INPROGRESS', 'SUCCESSFUL', 'FAILED'])
     PARSER.add_argument('-u', '--username', help="Username for bitbucket", required=True)
     PARSER.add_argument('-p', '--password', help="Password for bitbucket", required=True)
+    PARSER.add_argument('-d', '--debug', help="Debug mode", default=False, required=False)
     return PARSER.parse_args()
 
 
@@ -43,6 +44,7 @@ def main():
     bb_state = ARGS.state
     bb_username = ARGS.username
     bb_password = ARGS.password
+    debug = ARGS.debug
     status_object = {
                       "state": bb_state,
                       "key": 'JENKINS-{}'.format(jenkins_number),
@@ -50,8 +52,23 @@ def main():
                       "description": jenkins_job
                     }
     sha = get_git_sha()
+    
     bb_status_path='{}/2.0/repositories/{}/{}/commit/{}/statuses/build'.format(bb_api_host, bb_org, bb_repo, sha)
-    response = requests.post(bb_status_path, auth=(bb_username, bb_password), json=status_object)
+    
+    if debug:
+        print('Debug mode is on')
+        print('sha is {}'.format(str(sha)))
+        print('status path is {}'.format(str(bb_status_path))
+        print('status object is {}'.format(str(status_object)))
+        print('bb_repo is {}'.format(str(bb_repo)))
+        print('bb_org is {}'.format(str(bb_org)))
+        print('bb_state is {}'.format(str(bb_state)))
+        print('Jenkins env vars BUILD_URL={} JOB_NAME={} BUILD_NUMBER={}'.format(str(jenkins_url), str(jenkins_job), str(jenkins_number)))
+        
+    try:
+        response = requests.post(bb_status_path, auth=(bb_username, bb_password), json=status_object)
+    except Exception as e:
+        print('Couldnt post status back to Bitbucket - {}'.format(e))
 
     if response.ok == True:
         print('Build status successfully updated for {} of {}'.format(sha, bb_repo))
