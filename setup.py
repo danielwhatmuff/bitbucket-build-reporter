@@ -10,7 +10,7 @@ here = path.abspath(path.dirname(__file__))
 
 setup(
     name='bitbucket-jenkins-build-reporter',
-    version='0.0.1',
+    version='0.0.2',
     description='Post build statuses from Jenkins jobs to Bitbucket Cloud',
     long_description='A CLI to update build status for commits in Bitbucket Cloud from Jenkins',
     url='https://github.com/danielwhatmuff/bb-build-reporter',

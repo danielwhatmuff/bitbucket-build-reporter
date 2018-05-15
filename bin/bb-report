@@ -67,13 +67,12 @@ def main():
         
     try:
         response = requests.post(bb_status_path, auth=(bb_username, bb_password), json=status_object)
+        if response.ok == True:
+            print('Build status successfully updated for {} of {}'.format(sha, bb_repo))
+        else:
+            print('Couldnt update build status!')
     except Exception as e:
         print('Couldnt post status back to Bitbucket - {}'.format(e))
-
-    if response.ok == True:
-        print('Build status successfully updated for {} of {}'.format(sha, bb_repo))
-    else:
-        print('Couldnt update build status!')
 
 
 if __name__ == "__main__":
