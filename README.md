@@ -30,4 +30,5 @@ optional arguments:
                         Username for bitbucket
   -p PASSWORD, --password PASSWORD
                         Password for bitbucket
+  -d, --debug           Debug mode
 ```
