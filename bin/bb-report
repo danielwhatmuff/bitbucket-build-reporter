@@ -41,7 +41,7 @@ def get_git_sha():
 def main():
     ARGS = parse_arguments()
     bb_repo= ARGS.repo
-    bb_commit= ARGS.commit
+    bb_commit = ARGS.commit
     bb_org = ARGS.org
     bb_state = ARGS.state
     bb_username = ARGS.username
@@ -58,6 +58,8 @@ def main():
             
     if not bb_commit:
         bb_commit = get_git_sha()
+    else:
+        bb_commit = bb_commit[:7]
     
     bb_status_path='{}/2.0/repositories/{}/{}/commit/{}/statuses/build'.format(bb_api_host, bb_org, bb_repo, bb_commit)
     
