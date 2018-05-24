@@ -1,6 +1,8 @@
 # Bitbucket Cloud Build Status Reporter
 
-## Update the Bitbucket  build statuses for commits from your CI jobs.
+## Update the Bitbucket build statuses for commits from your CI jobs.
+![](https://raw.githubusercontent.com/danielwhatmuff/bitbucket-build-reporter/master/img/img-1.png)
+![](https://raw.githubusercontent.com/danielwhatmuff/bitbucket-build-reporter/master/img/img-2.png)
 
 ### Benefits
 * Block pull requests from being merged if there is a failed build
