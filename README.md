@@ -41,6 +41,7 @@ optional arguments:
 
 ### Sanity test it against your Bitbucket account locally
 ```
+$ pip install bitbucket-build-reporter
 $ cd your-repo/ # Required for determining a valid commit sha
 $ bb-report -u 'https://your-ci.com' -n 123 -s INPROGRESS -r <yourrepo> -u <bitbucket username> -p <bitbucket password> -o <bitbucket org>
 ```
