@@ -14,7 +14,7 @@
 * URL and build number will default to jenkins environment variables if not supplied on command line
 * Requires username and password with `repository` scope permission to access the required [API method](https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D/%7Brepo_slug%7D/commit/%7Bnode%7D/statuses/build)
 
-### Usage examples
+### Usage example
 * If you use Travis CI (.org)
 ```yaml
 ...
@@ -28,7 +28,6 @@ after_success:
   - bb-report -c $TRAVIS_COMMIT -U "https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID" -n $TRAVIS_BUILD_NUMBER -s SUCCESSFUL -r <yourrepo> -u $BITBUCKET_USERNAME -p $BITBUCKET_PASSWORD -o <bitbucket org>
 ...
 ```
-* If you use 
 
 ### Reference
 ```
