@@ -14,6 +14,22 @@
 * URL and build number will default to jenkins environment variables if not supplied on command line
 * Requires username and password with `repository` scope permission to access the required [API method](https://developer.atlassian.com/bitbucket/api/2/reference/resource/repositories/%7Busername%7D/%7Brepo_slug%7D/commit/%7Bnode%7D/statuses/build)
 
+### Usage examples
+* If you use Travis CI (.org)
+```yaml
+...
+before_script:
+  - bb-report -c $TRAVIS_COMMIT -U "https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID" -n $TRAVIS_BUILD_NUMBER -s INPROGRESS -r <yourrepo> -u $BITBUCKET_USERNAME -p $BITBUCKET_PASSWORD -o <bitbucket org>
+script:
+  - python your-tests.py
+after_failure:
+  - bb-report -c $TRAVIS_COMMIT -U "https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID" -n $TRAVIS_BUILD_NUMBER -s FAILED -r <yourrepo> -u $BITBUCKET_USERNAME -p $BITBUCKET_PASSWORD -o <bitbucket org>
+after_success:
+  - bb-report -c $TRAVIS_COMMIT -U "https://travis-ci.org/$TRAVIS_REPO_SLUG/builds/$TRAVIS_BUILD_ID" -n $TRAVIS_BUILD_NUMBER -s SUCCESSFUL -r <yourrepo> -u $BITBUCKET_USERNAME -p $BITBUCKET_PASSWORD -o <bitbucket org>
+...
+```
+* If you use 
+
 ### Reference
 ```
 usage: bb-report [-h] -o ORG -r REPO [-c COMMIT] [-U URL] [-n NUMBER] -s
@@ -43,5 +59,5 @@ optional arguments:
 ```
 $ pip install bitbucket-build-reporter
 $ cd your-repo/ # Required for determining a valid commit sha
-$ bb-report -u 'https://your-ci.com' -n 123 -s INPROGRESS -r <yourrepo> -u <bitbucket username> -p <bitbucket password> -o <bitbucket org>
+$ bb-report -U 'https://your-ci.com' -n 123 -s INPROGRESS -r <yourrepo> -u <bitbucket username> -p <bitbucket password> -o <bitbucket org>
 ```
