@@ -39,5 +39,5 @@ optional arguments:
 ### Sanity test it against your Bitbucket account locally
 ```
 $ cd your-repo/ # Required for determining a valid commit sha
-$ bb-report -u 'https://your-ci.com' -nn 123 -s INPROGRESS -r <yourrepo> -u <bitbucket username> -p <bitbucket password> -o <bitbucket org>
+$ bb-report -u 'https://your-ci.com' -n 123 -s INPROGRESS -r <yourrepo> -u <bitbucket username> -p <bitbucket password> -o <bitbucket org>
 ```
